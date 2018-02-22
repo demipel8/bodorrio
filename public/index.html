@@ -5,5 +5,25 @@
 </head>
 <body>
 	<h1>Hola!</h1>
+	<p>Quien eres?</p>
+	<input id="invitee" type="text" name="" value="">
+	<button id="send" type="button" name="button">send</button>
 </body>
+<script type="text/javascript">
+	var sendButton = document.getElementById('send')
+
+	sendButton.addEventListener('click', getViewForInvitee)
+
+	function getViewForInvitee() {
+		var request = new XMLHttpRequest()
+		var invitee = document.getElementById('invitee').value
+
+		request.addEventListener('load', function() {
+			window.location.replace(this.response)
+		})
+
+	  request.open('POST', '/invitee')
+	  request.send(JSON.stringify({ name: invitee }))
+	}
+</script>
 </html>
