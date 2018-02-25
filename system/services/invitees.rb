@@ -1,27 +1,28 @@
 # frozen_string_literal: true
 
+require_relative 'invitees/repository'
+
 class Invitees
-  def initialize(name)
+  def initialize(name, repository=InviteesRepository)
+    @repository = repository.new
     @name = name
   end
 
   def lunch?
-    lunch_invitee?
+    lunch_invitees.include?(@name)
   end
 
   def party?
-    party_invitee?
+    party_invitees.include?(@name)
   end
 
   private
 
-  def lunch_invitee?
-    lunch_invitees = %w[a_family_member]
-    lunch_invitees.include?(@name)
+  def lunch_invitees
+    @repository.lunch_list
   end
 
-  def party_invitee?
-    party_invitees = %w[a_friend another_friend]
-    party_invitees.include?(@name)
+  def party_invitees
+    @repository.party_list
   end
 end

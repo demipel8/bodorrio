@@ -18,8 +18,10 @@ module System
     post '/invitee' do
       parameters = JSON.parse(request.body.read, symbolize_names: true)
       name = parameters[:name]
-      return 'lunch_instructions.html' if Invitees.new(name).lunch?
-      return 'party_instructions.html' if Invitees.new(name).party?
+      invitee = Invitees.new(name)
+
+      return 'lunch_instructions.html' if invitee.lunch?
+      return 'party_instructions.html' if invitee.party?
       'ftp_instructions.html'
     end
   end

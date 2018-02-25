@@ -10,6 +10,14 @@ RSpec.describe 'Static files' do
     System::Server
   end
 
+  before do
+    WebMock.allow_net_connect!
+  end
+
+  after do
+    WebMock.disable_net_connect!
+  end
+
   it 'returns html' do
     get '/'
 

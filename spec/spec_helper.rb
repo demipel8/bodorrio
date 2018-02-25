@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'webmock/rspec'
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'system'))
 
 ENV['RACK_ENV'] = 'test'

@@ -5,7 +5,7 @@ Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Layout/DotPosition:
-  EnforcedStyle: trailing
+  EnforcedStyle: leading
 
 Layout/EmptyLinesAroundClassBody:
   Enabled: true
