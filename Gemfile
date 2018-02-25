@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.4.1'
 
-gem 'sinatra', '2.0.0'
+gem 'sinatra', '2.0.1'
 
 group :test do
   gem 'rack-test', '0.6.3'
