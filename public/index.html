@@ -2,28 +2,42 @@
 <html>
 <head>
 	<title>Bodorrio</title>
+	<link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-	<h1>Hola!</h1>
-	<p>Quien eres?</p>
-	<input id="invitee" type="text" name="" value="">
-	<button id="send" type="button" name="button">send</button>
+	<div class="login">
+		<h1 class="login-title">Quien eres?</h1>
+		<input id="name" type="text" class="login-input" placeholder="Name" autofocus />
+		<input id="surname" type="text" class="login-input" placeholder="Surname" />
+		<button id="send" type="button" class="login-button">Entrar</button>
+	</div>
 </body>
 <script type="text/javascript">
 	var sendButton = document.getElementById('send')
+	var nameInput = document.getElementById('name')
+	var surnameInput = document.getElementById('surname')
+	var ENTER_KEY = 13
 
 	sendButton.addEventListener('click', getViewForInvitee)
+	nameInput.addEventListener('keydown', getViewForInviteeOnEnter)
+	surnameInput.addEventListener('keydown', getViewForInviteeOnEnter)
+
+	function getViewForInviteeOnEnter(event) {
+		if (event.keyCode != ENTER_KEY) return
+		getViewForInvitee()
+	}
 
 	function getViewForInvitee() {
 		var request = new XMLHttpRequest()
-		var invitee = document.getElementById('invitee').value
+		var name = nameInput.value
+		var surname = surnameInput.value
 
 		request.addEventListener('load', function() {
 			window.location.replace(this.response)
 		})
 
 	  request.open('POST', '/invitee')
-	  request.send(JSON.stringify({ name: invitee }))
+	  request.send(JSON.stringify({ name: `${name} ${surname}` }))
 	}
 </script>
 </html>
